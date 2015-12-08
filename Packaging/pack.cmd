@@ -8,7 +8,7 @@ if NOT EXIST Output md Output
 GOTO :EOF
 
 :INVOKE
-..\tools\NuGet\nuget.exe pack %1 -o "Output"
+..\.nuget\nuget.exe pack %1 -o "Output"
 GOTO :EOF
 
 :ALL
