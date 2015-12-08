@@ -21,7 +21,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using NDbUnit.Core;
 using System.Data.OracleClient;
 
@@ -54,53 +53,53 @@ namespace NDbUnit.OracleClient
             throw new NotSupportedException("OnInsertIdentity not supported!");
         }
 
-        private void enableDisableTableConstraints(String enableDisable, DataTable dataTable, IDbTransaction dbTransaction)
-        {
-            DbCommand dbCommand = null;
-            DbParameter dbParam = null;
-            DbDataReader dbReader = null;
-            IList<String> altersList = new List<String>();
+        //private void enableDisableTableConstraints(String enableDisable, DataTable dataTable, IDbTransaction dbTransaction)
+        //{
+        //    DbCommand dbCommand = null;
+        //    DbParameter dbParam = null;
+        //    DbDataReader dbReader = null;
+        //    IList<String> altersList = new List<String>();
 
-            String queryEnables =
-                " SELECT 'ALTER TABLE '"
-                + "    || table_name"
-                + "    || ' " + enableDisable + " CONSTRAINT '"
-                + "    || constraint_name AS alterComm"
-                + "     FROM user_constraints"
-                + "    WHERE UPPER(table_name) = UPPER(:tabela)"
-                + "    AND constraint_type IN ('C', 'R')";
+        //    String queryEnables =
+        //        " SELECT 'ALTER TABLE '"
+        //        + "    || table_name"
+        //        + "    || ' " + enableDisable + " CONSTRAINT '"
+        //        + "    || constraint_name AS alterComm"
+        //        + "     FROM user_constraints"
+        //        + "    WHERE UPPER(table_name) = UPPER(:tabela)"
+        //        + "    AND constraint_type IN ('C', 'R')";
 
-            dbCommand = new OracleCommand();
-            dbCommand.CommandText = queryEnables;
-            dbCommand.Connection = (DbConnection)dbTransaction.Connection;
-            dbCommand.Transaction = (DbTransaction)dbTransaction;
+        //    dbCommand = new OracleCommand();
+        //    dbCommand.CommandText = queryEnables;
+        //    dbCommand.Connection = (DbConnection)dbTransaction.Connection;
+        //    dbCommand.Transaction = (DbTransaction)dbTransaction;
 
-            dbParam = new OracleParameter();
-            dbParam.ParameterName = "tabela";
-            dbParam.Value = dataTable.TableName;
-            dbParam.DbType = DbType.String;
-            dbCommand.Parameters.Add(dbParam);
+        //    dbParam = new OracleParameter();
+        //    dbParam.ParameterName = "tabela";
+        //    dbParam.Value = dataTable.TableName;
+        //    dbParam.DbType = DbType.String;
+        //    dbCommand.Parameters.Add(dbParam);
 
-            dbReader = dbCommand.ExecuteReader();
-            while (dbReader.Read())
-            {
-                altersList.Add(dbReader.GetString(dbReader.GetOrdinal("alterComm")));
-            }
+        //    dbReader = dbCommand.ExecuteReader();
+        //    while (dbReader.Read())
+        //    {
+        //        altersList.Add(dbReader.GetString(dbReader.GetOrdinal("alterComm")));
+        //    }
 
-            dbReader.Close();
+        //    dbReader.Close();
 
-            foreach (String returnedCommand in altersList)
-            {
+        //    foreach (String returnedCommand in altersList)
+        //    {
 
-                var escapedCommand = returnedCommand.Replace(" " + dataTable.TableName + " ", TableNameHelper.FormatTableName(dataTable.TableName, QuotePrefix, QuoteSuffix));
+        //        var escapedCommand = returnedCommand.Replace(" " + dataTable.TableName + " ", TableNameHelper.FormatTableName(dataTable.TableName, QuotePrefix, QuoteSuffix));
 
-                dbCommand = new OracleCommand();
-                dbCommand.CommandText = escapedCommand;
-                dbCommand.Connection = (DbConnection)dbTransaction.Connection;
-                dbCommand.Transaction = (DbTransaction)dbTransaction;
-                dbCommand.ExecuteNonQuery();
-            }
-        }
+        //        dbCommand = new OracleCommand();
+        //        dbCommand.CommandText = escapedCommand;
+        //        dbCommand.Connection = (DbConnection)dbTransaction.Connection;
+        //        dbCommand.Transaction = (DbTransaction)dbTransaction;
+        //        dbCommand.ExecuteNonQuery();
+        //    }
+        //}
 
     }
 }

@@ -31,19 +31,19 @@ namespace NDbUnit.Core
         Insert,
         /// <summary>Insert rows into a set of database tables.  Allow identity 
         /// inserts to occur.</summary>
-        InsertIdentity,
+        //InsertIdentity,
         /// <summary>Delete rows from a set of database tables.</summary>
-        Delete,
+        //Delete,
         /// <summary>Delete all rows from a set of database tables.</summary>
         DeleteAll,
         /// <summary>Update rows in a set of database tables.</summary>
         Update,
         /// <summary>Refresh rows in a set of database tables.  Rows that exist 
         /// in the database are updated.  Rows that don't exist are inserted.</summary>
-        Refresh,
+        //Refresh,
         /// <summary>Composite operation of DeleteAll and Insert.</summary>
-        CleanInsert,
+        //CleanInsert,
         /// <summary>Composite operation of DeleteAll and InsertIdentity.</summary>
-        CleanInsertIdentity
+        //CleanInsertIdentity
     }
 }

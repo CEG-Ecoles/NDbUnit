@@ -31,11 +31,6 @@ namespace NDbUnit.Test.OracleClient
     [Category(TestCategories.OracleTests)]
     public class OracleClientDbOperationTest : DbOperationTestBase
     {
-        public override void InsertIdentity_Executes_Without_Exception()
-        {
-            Assert.IsTrue(true);
-        }
-
         protected override NDbUnit.Core.IDbCommandBuilder GetCommandBuilder()
         {
             return new OracleClientDbCommandBuilder(new DbConnectionManager<OracleConnection>(DbConnection.OracleClientConnectionString));

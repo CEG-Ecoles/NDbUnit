@@ -84,17 +84,17 @@ namespace NDbUnit.OracleClient
             return sqlInsertCommand;
         }
 
-        protected override IDbCommand CreateUpdateCommand(IDbCommand selectCommand, string tableName)
-        {
-            var command = base.CreateUpdateCommand(selectCommand, tableName);
-            return command;
-        }
+        //protected override IDbCommand CreateUpdateCommand(IDbCommand selectCommand, string tableName)
+        //{
+        //    var command = base.CreateUpdateCommand(selectCommand, tableName);
+        //    return command;
+        //}
 
-        protected override IDbCommand CreateInsertIdentityCommand(IDbCommand selectCommand, string tableName)
-        {
-            var command = base.CreateInsertIdentityCommand(selectCommand, tableName);
-            return command;
-        }
+        //protected override IDbCommand CreateInsertIdentityCommand(IDbCommand selectCommand, string tableName)
+        //{
+        //    var command = base.CreateInsertIdentityCommand(selectCommand, tableName);
+        //    return command;
+        //}
 
         protected override IDbCommand CreateDeleteCommand(IDbCommand selectCommand, string tableName)
         {

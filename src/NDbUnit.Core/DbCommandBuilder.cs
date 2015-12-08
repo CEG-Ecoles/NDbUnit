@@ -118,10 +118,10 @@ namespace NDbUnit.Core
                 commands = new Commands();
                 commands.SelectCommand = CreateSelectCommand(_dataSet, dataTable.TableName);
                 commands.InsertCommand = CreateInsertCommand(commands.SelectCommand, dataTable.TableName);
-                commands.InsertIdentityCommand = CreateInsertIdentityCommand(commands.SelectCommand, dataTable.TableName);
-                commands.DeleteCommand = CreateDeleteCommand(commands.SelectCommand, dataTable.TableName);
+                //commands.InsertIdentityCommand = CreateInsertIdentityCommand(commands.SelectCommand, dataTable.TableName);
+                //commands.DeleteCommand = CreateDeleteCommand(commands.SelectCommand, dataTable.TableName);
                 commands.DeleteAllCommand = CreateDeleteAllCommand(dataTable.TableName);
-                commands.UpdateCommand = CreateUpdateCommand(commands.SelectCommand, dataTable.TableName);
+                //commands.UpdateCommand = CreateUpdateCommand(commands.SelectCommand, dataTable.TableName);
 
                 ht[dataTable.TableName] = commands;
             }
@@ -287,44 +287,44 @@ namespace NDbUnit.Core
             return sqlInsertCommand;
         }
 
-        protected virtual IDbCommand CreateInsertIdentityCommand(IDbCommand selectCommand, string tableName)
-        {
-            int count = 1;
-            bool notFirstColumn = false;
-            StringBuilder sb = new StringBuilder();
-            sb.Append(String.Format("INSERT INTO {0}(", TableNameHelper.FormatTableName(tableName, QuotePrefix, QuoteSuffix)));
-            StringBuilder sbParam = new StringBuilder();
-            IDataParameter sqlParameter;
-            IDbCommand sqlInsertIdentityCommand = CreateDbCommand();
-            foreach (DataRow dataRow in _dataTableSchema.Rows)
-            {
-                if (ColumnOKToInclude(dataRow))
-                {
+        //protected virtual IDbCommand CreateInsertIdentityCommand(IDbCommand selectCommand, string tableName)
+        //{
+        //    int count = 1;
+        //    bool notFirstColumn = false;
+        //    StringBuilder sb = new StringBuilder();
+        //    sb.Append(String.Format("INSERT INTO {0}(", TableNameHelper.FormatTableName(tableName, QuotePrefix, QuoteSuffix)));
+        //    StringBuilder sbParam = new StringBuilder();
+        //    IDataParameter sqlParameter;
+        //    IDbCommand sqlInsertIdentityCommand = CreateDbCommand();
+        //    foreach (DataRow dataRow in _dataTableSchema.Rows)
+        //    {
+        //        if (ColumnOKToInclude(dataRow))
+        //        {
 
-                    if (notFirstColumn)
-                    {
-                        sb.Append(", ");
-                        sbParam.Append(", ");
-                    }
+        //            if (notFirstColumn)
+        //            {
+        //                sb.Append(", ");
+        //                sbParam.Append(", ");
+        //            }
 
-                    notFirstColumn = true;
+        //            notFirstColumn = true;
 
-                    sb.Append(QuotePrefix + dataRow["ColumnName"] + QuoteSuffix);
-                    sbParam.Append(GetParameterDesignator(count));
+        //            sb.Append(QuotePrefix + dataRow["ColumnName"] + QuoteSuffix);
+        //            sbParam.Append(GetParameterDesignator(count));
 
-                    sqlParameter = CreateNewSqlParameter(count, dataRow);
-                    sqlInsertIdentityCommand.Parameters.Add(sqlParameter);
+        //            sqlParameter = CreateNewSqlParameter(count, dataRow);
+        //            sqlInsertIdentityCommand.Parameters.Add(sqlParameter);
 
-                    ++count;
-                }
-            }
+        //            ++count;
+        //        }
+        //    }
 
-            sb.Append(String.Format(") VALUES({0})", sbParam));
+        //    sb.Append(String.Format(") VALUES({0})", sbParam));
 
-            sqlInsertIdentityCommand.CommandText = sb.ToString();
+        //    sqlInsertIdentityCommand.CommandText = sb.ToString();
 
-            return sqlInsertIdentityCommand;
-        }
+        //    return sqlInsertIdentityCommand;
+        //}
 
         protected abstract IDataParameter CreateNewSqlParameter(int index, DataRow dataRow);
 

@@ -225,44 +225,44 @@ namespace NDbUnit.Core
                             dbOperation.Insert(_dataSet, dbCommandBuilder, dbTransaction);
                             break;
                         }
-                    case DbOperationFlag.InsertIdentity:
-                        {
-                            dbOperation.InsertIdentity(_dataSet, dbCommandBuilder, dbTransaction);
-                            break;
-                        }
-                    case DbOperationFlag.Delete:
-                        {
-                            dbOperation.Delete(_dataSet, dbCommandBuilder, dbTransaction);
+                    //case DbOperationFlag.InsertIdentity:
+                    //    {
+                    //        dbOperation.InsertIdentity(_dataSet, dbCommandBuilder, dbTransaction);
+                    //        break;
+                    //    }
+                    //case DbOperationFlag.Delete:
+                    //    {
+                    //        dbOperation.Delete(_dataSet, dbCommandBuilder, dbTransaction);
 
-                            break;
-                        }
+                    //        break;
+                    //    }
                     case DbOperationFlag.DeleteAll:
                         {
                             dbOperation.DeleteAll(_dataSet, dbCommandBuilder, dbTransaction);
                             break;
                         }
-                    case DbOperationFlag.Refresh:
-                        {
-                            dbOperation.Refresh(_dataSet, dbCommandBuilder, dbTransaction);
-                            break;
-                        }
-                    case DbOperationFlag.Update:
-                        {
-                            dbOperation.Update(_dataSet, dbCommandBuilder, dbTransaction);
-                            break;
-                        }
-                    case DbOperationFlag.CleanInsert:
-                        {
-                            dbOperation.DeleteAll(_dataSet, dbCommandBuilder, dbTransaction);
-                            dbOperation.Insert(_dataSet, dbCommandBuilder, dbTransaction);
-                            break;
-                        }
-                    case DbOperationFlag.CleanInsertIdentity:
-                        {
-                            dbOperation.DeleteAll(_dataSet, dbCommandBuilder, dbTransaction);
-                            dbOperation.InsertIdentity(_dataSet, dbCommandBuilder, dbTransaction);
-                            break;
-                        }
+                    //case DbOperationFlag.Refresh:
+                    //    {
+                    //        dbOperation.Refresh(_dataSet, dbCommandBuilder, dbTransaction);
+                    //        break;
+                    //    }
+                    //case DbOperationFlag.Update:
+                    //    {
+                    //        dbOperation.Update(_dataSet, dbCommandBuilder, dbTransaction);
+                    //        break;
+                    //    }
+                    //case DbOperationFlag.CleanInsert:
+                    //    {
+                    //        dbOperation.DeleteAll(_dataSet, dbCommandBuilder, dbTransaction);
+                    //        dbOperation.Insert(_dataSet, dbCommandBuilder, dbTransaction);
+                    //        break;
+                    //    }
+                    //case DbOperationFlag.CleanInsertIdentity:
+                    //    {
+                    //        dbOperation.DeleteAll(_dataSet, dbCommandBuilder, dbTransaction);
+                    //        dbOperation.InsertIdentity(_dataSet, dbCommandBuilder, dbTransaction);
+                    //        break;
+                    //    }
                 }
 
                 if (null != PostOperation)

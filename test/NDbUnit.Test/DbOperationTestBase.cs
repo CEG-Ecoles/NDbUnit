@@ -83,29 +83,6 @@ namespace NDbUnit.Test.Common
         }
 
         [Test]
-        public void Delete_Executes_Without_Exception()
-        {
-            using (var sqlTransaction = _commandBuilder.Connection.BeginTransaction())
-            {
-                try
-                {
-                    _dbOperation.Delete(_dsData, _commandBuilder, sqlTransaction);
-                    sqlTransaction.Commit();
-                }
-                catch (Exception)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                    }
-
-                    throw;
-                }
-            }
-            Assert.IsTrue(true);
-        }
-
-        [Test]
         public void DeleteAll_Executes_Without_Exception()
         {
             using (var sqlTransaction = _commandBuilder.Connection.BeginTransaction())
@@ -156,90 +133,6 @@ namespace NDbUnit.Test.Common
             Assert.IsTrue(true);
         }
 
-        [Test]
-        public virtual void InsertIdentity_Executes_Without_Exception()
-        {
-            DeleteAll_Executes_Without_Exception();
-
-            using (var sqlTransaction = _commandBuilder.Connection.BeginTransaction())
-            {
-                try
-                {
-                    _dbOperation.InsertIdentity(_dsData, _commandBuilder, sqlTransaction);
-                    sqlTransaction.Commit();
-                }
-                catch (Exception)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                    }
-
-                    throw;
-                }
-            }
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public void Refresh_Executes_Without_Exception()
-        {
-            DeleteAll_Executes_Without_Exception();
-            Insert_Executes_Without_Exception();
-
-            DataSet dsSchema = _commandBuilder.GetSchema();
-            DataSet ds = dsSchema.Clone();
-            ds.ReadXml(ReadOnlyStreamFromFilename(GetXmlRefeshFilename()));
-
-            using (var sqlTransaction = _commandBuilder.Connection.BeginTransaction())
-            {
-                try
-                {
-                    _dbOperation.Refresh(ds, _commandBuilder, sqlTransaction);
-                    sqlTransaction.Commit();
-                }
-                catch (Exception)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                    }
-
-                    throw;
-                }
-            }
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public void Update_Executes_Without_Exception()
-        {
-            DeleteAll_Executes_Without_Exception();
-            Insert_Executes_Without_Exception();
-
-            DataSet dsSchema = _commandBuilder.GetSchema();
-            DataSet ds = dsSchema.Clone();
-            ds.ReadXml(ReadOnlyStreamFromFilename(GetXmlFilename()));
-
-            using (var sqlTransaction = _commandBuilder.Connection.BeginTransaction())
-            {
-                try
-                {
-                    _dbOperation.Update(ds, _commandBuilder, sqlTransaction);
-                    sqlTransaction.Commit();
-                }
-                catch (Exception)
-                {
-                    if (sqlTransaction != null)
-                    {
-                        sqlTransaction.Rollback();
-                    }
-
-                    throw;
-                }
-            }
-            Assert.IsTrue(true);
-        }
 
         protected abstract IDbCommandBuilder GetCommandBuilder();
 
