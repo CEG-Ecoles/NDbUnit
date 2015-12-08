@@ -49,16 +49,6 @@ namespace NDbUnit.OracleClient
             return new OracleDataAdapter();
         }
 
-        protected override void DisableTableConstraints(DataTable dataTable, IDbTransaction dbTransaction)
-        {
-            this.enableDisableTableConstraints("DISABLE", dataTable, dbTransaction);
-        }
-
-        protected override void EnableTableConstraints(DataTable dataTable, IDbTransaction dbTransaction)
-        {
-            this.enableDisableTableConstraints("ENABLE", dataTable, dbTransaction);
-        }
-
         protected override void OnInsertIdentity(DataTable dataTable, IDbCommand dbCommand, IDbTransaction dbTransaction)
         {
             throw new NotSupportedException("OnInsertIdentity not supported!");
