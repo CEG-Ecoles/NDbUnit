@@ -23,7 +23,7 @@ using NDbUnit.Test.Common;
 using NDbUnit.OracleClient;
 using NDbUnit.Core;
 using NUnit.Framework;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace NDbUnit.Test.OracleClient
 {
