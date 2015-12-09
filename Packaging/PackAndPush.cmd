@@ -1,4 +1,4 @@
-#@echo off
+@echo off
 
 set repos=http://vdnnet1.vdn.ne.ch/nuget/api/v2/package/
 set apikey=9RerAspawrAch9
