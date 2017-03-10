@@ -1,5 +1,22 @@
 #NDbUnit is a .NET library for managing database state during unit testing.#
 
+Cette version est une version de NDBUnit allégée pour le CEG.
+
+Les modifications apportées sont les suivantes :
+
+* support des bases Oracle uniquement
+* pas de diable/enable des contraintes avant/après les différentes opérations
+* suppression des opérations pas utilisées (Delete, InsertIdentity et Update)
+
+Pour faire une nouvelle version :
+
+1. Compiler la solution avec la configuration "Release"
+2. Modifier la version des l'assembly NDBUnit.Core (fichier AssemblyInfo.cs)
+3. Modifier la version dans les fichiers "nuget" (Packaging/*.nuspec) (ne pas oublier de modifier la version de dépendance)
+4. Packager et pousser la version sur le serveur NuGet du CEG avec le batch PackAndPush.cmd
+
+
+
 [![Build status](https://ci.appveyor.com/api/projects/status/a733dsuvlbr6eyd0?svg=true)](https://ci.appveyor.com/project/sbohlen/ndbunit)
 
 [![Project Stats](https://www.openhub.net/p/ndbunit/widgets/project_thin_badge.gif)](https://www.openhub.net/p/ndbunit)

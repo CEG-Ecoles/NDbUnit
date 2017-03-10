@@ -33,30 +33,22 @@ namespace NDbUnit.Core
 
         public void Delete(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            //DisableAllTableConstraints(ds, dbTransaction);
             deleteCommon(ds, dbCommandBuilder, dbTransaction, false);
-            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void DeleteAll(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            //DisableAllTableConstraints(ds, dbTransaction);
             deleteCommon(ds, dbCommandBuilder, dbTransaction, true);
-            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void Insert(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            //DisableAllTableConstraints(ds, dbTransaction);
             insertCommon(ds, dbCommandBuilder, dbTransaction, false);
-            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void InsertIdentity(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            //DisableAllTableConstraints(ds, dbTransaction);
             insertCommon(ds, dbCommandBuilder, dbTransaction, true);
-            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void Refresh(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
@@ -64,14 +56,10 @@ namespace NDbUnit.Core
 
             DataSetTableIterator iterator = new DataSetTableIterator(ds, false);
 
-            DisableAllTableConstraints(ds, dbTransaction);
-
             foreach (DataTable dataTable in iterator)
             {
                 OnRefresh(ds, dbCommandBuilder, dbTransaction, dataTable.TableName);
             }
-
-            EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void Update(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
@@ -80,8 +68,6 @@ namespace NDbUnit.Core
             dsCopy.AcceptChanges();
 
             DataSetTableIterator iterator = new DataSetTableIterator(dsCopy, true);
-
-            DisableAllTableConstraints(ds, dbTransaction);
 
             foreach (DataTable dataTable in iterator)
             {
@@ -94,8 +80,6 @@ namespace NDbUnit.Core
 
                 OnUpdate(dsCopy, dbCommandBuilder, dbTransaction, dataTable.TableName);
             }
-
-            EnableAllTableConstraints(ds, dbTransaction);
         }
 
         protected DataRow CloneDataRow(DataTable dataTable, DataRow dataRow)
@@ -112,32 +96,6 @@ namespace NDbUnit.Core
         protected abstract IDbCommand CreateDbCommand(string cmdText);
 
         protected abstract IDbDataAdapter CreateDbDataAdapter();
-
-        private void DisableAllTableConstraints(DataSet dataSet, IDbTransaction transaction)
-        {
-            foreach (DataTable table in dataSet.Tables)
-            {
-                DisableTableConstraints(table, transaction);
-            }
-        }
-
-        private void EnableAllTableConstraints(DataSet dataSet, IDbTransaction transaction)
-        {
-            foreach (DataTable table in dataSet.Tables)
-            {
-                EnableTableConstraints(table, transaction);
-            }
-        }
-
-        protected virtual void DisableTableConstraints(DataTable dataTable, IDbTransaction dbTransaction)
-        {
-            //base class implementation does NOTHING in this method, derived classes must override as needed
-        }
-
-        protected virtual void EnableTableConstraints(DataTable dataTable, IDbTransaction dbTransaction)
-        {
-            //base class implementation does NOTHING in this method, derived classes must override as needed
-        }
 
         protected bool IsPrimaryKeyValueEqual(DataRow dataRow1, DataRow dataRow2, DataColumn[] primaryKey)
         {
