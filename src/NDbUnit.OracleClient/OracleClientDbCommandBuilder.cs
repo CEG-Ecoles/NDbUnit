@@ -22,7 +22,7 @@ using System;
 using System.Data;
 using System.Text;
 using NDbUnit.Core;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace NDbUnit.OracleClient
 {
@@ -80,7 +80,7 @@ namespace NDbUnit.OracleClient
             sb.Append(String.Format(") VALUES({0})", sbParam));
 
             sqlInsertCommand.CommandText = sb.ToString();
-            ((OracleCommand)sqlInsertCommand).BindByName = true;
+            //((OracleCommand)sqlInsertCommand).BindByName = true;
 
             return sqlInsertCommand;
         }
@@ -88,34 +88,34 @@ namespace NDbUnit.OracleClient
         protected override IDbCommand CreateUpdateCommand(IDbCommand selectCommand, string tableName)
         {
             var command = base.CreateUpdateCommand(selectCommand, tableName);
-            ((OracleCommand) command).BindByName = true;
+            //((OracleCommand) command).BindByName = true;
             return command;
         }
 
         protected override IDbCommand CreateInsertIdentityCommand(IDbCommand selectCommand, string tableName)
         {
             var command = base.CreateInsertIdentityCommand(selectCommand, tableName);
-            ((OracleCommand)command).BindByName = true;
+            //((OracleCommand)command).BindByName = true;
             return command;
         }
 
         protected override IDbCommand CreateDeleteCommand(IDbCommand selectCommand, string tableName)
         {
             var command = base.CreateDeleteCommand(selectCommand, tableName);
-            ((OracleCommand)command).BindByName = true;
+            //((OracleCommand)command).BindByName = true;
             return command;
         }
 
         protected override IDbCommand CreateSelectCommand(DataSet ds, string tableName)
         {
             var command = base.CreateSelectCommand(ds, tableName);
-            ((OracleCommand)command).BindByName = true;
+            //((OracleCommand)command).BindByName = true;
             return command;
         }
 
         protected override IDataParameter CreateNewSqlParameter(int index, DataRow dataRow)
         {
-            return new OracleParameter("p" + index, (Oracle.DataAccess.Client.OracleDbType)dataRow["ProviderType"],
+            return new OracleParameter("p" + index, (System.Data.OracleClient.OracleType)dataRow["ProviderType"],
                                       (int)dataRow["ColumnSize"], (string)dataRow["ColumnName"]);
         }
 

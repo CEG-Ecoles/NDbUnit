@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using NDbUnit.Core;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace NDbUnit.OracleClient
 {

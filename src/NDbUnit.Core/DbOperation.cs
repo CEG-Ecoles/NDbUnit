@@ -33,30 +33,30 @@ namespace NDbUnit.Core
 
         public void Delete(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            DisableAllTableConstraints(ds, dbTransaction);
+            //DisableAllTableConstraints(ds, dbTransaction);
             deleteCommon(ds, dbCommandBuilder, dbTransaction, false);
-            EnableAllTableConstraints(ds, dbTransaction);
+            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void DeleteAll(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            DisableAllTableConstraints(ds, dbTransaction);
+            //DisableAllTableConstraints(ds, dbTransaction);
             deleteCommon(ds, dbCommandBuilder, dbTransaction, true);
-            EnableAllTableConstraints(ds, dbTransaction);
+            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void Insert(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            DisableAllTableConstraints(ds, dbTransaction);
+            //DisableAllTableConstraints(ds, dbTransaction);
             insertCommon(ds, dbCommandBuilder, dbTransaction, false);
-            EnableAllTableConstraints(ds, dbTransaction);
+            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void InsertIdentity(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)
         {
-            DisableAllTableConstraints(ds, dbTransaction);
+            //DisableAllTableConstraints(ds, dbTransaction);
             insertCommon(ds, dbCommandBuilder, dbTransaction, true);
-            EnableAllTableConstraints(ds, dbTransaction);
+            //EnableAllTableConstraints(ds, dbTransaction);
         }
 
         public void Refresh(DataSet ds, IDbCommandBuilder dbCommandBuilder, IDbTransaction dbTransaction)

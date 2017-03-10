@@ -20,7 +20,7 @@
 
 using System.Data;
 using NDbUnit.Core;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace NDbUnit.OracleClient
 {
