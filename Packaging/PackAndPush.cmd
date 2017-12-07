@@ -1,6 +1,6 @@
 @echo off
 
-set repos=http://vdnnet1.vdn.ne.ch/nuget/api/v2/package/
+set repos=http://vdnnet11.vdn.ne.ch/nuget/api/v2/package/
 set apikey=9RerAspawrAch9
 
 GOTO :ALL
