@@ -2,7 +2,7 @@
 <package>
 	<metadata>
 		<id>Ceg.NDbUnit.Core</id>
-		<version>1.6.8.3</version>
+		<version>1.6.8.4</version>
 		<authors>Stephen Bohlen</authors>
 		<description>NDbUnit Core Services; not intended to be consumed by itself</description>
 		<language>en-US</language>
